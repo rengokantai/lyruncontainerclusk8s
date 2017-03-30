@@ -131,4 +131,8 @@ KUBELET_API_SERVER="--api-servers=http://a:8080"
 # KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redha
 t.com/rhel7/pod-infrastructure:latest"
 ```
+machine b and c
+```
+systemctl enable kube-proxy kubelet docker && systemctl start kube-proxy kubelet docker
+systemctl status kube-proxy kubelet docker | grep "(running)" | wc -l
 ```
