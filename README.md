@@ -34,7 +34,7 @@ systemctl status firewalld
 ```
 
 #### 10:06
-master only
+all
 ```
 yum install -y --enablerepo=virt7-docker-common-release kubernetes docker && yum install -y etcd
 ```
@@ -92,4 +92,43 @@ systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler && s
 check status, should return 4
 ```
 systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)" | wc -l
+```
+
+### 03. Install and Configure the Minions
+minions
+```
+vi /etc/kubernetes/config
+```
+
+edit
+```
+KUBE_MASTER="--master=http://a:8080"
+KUBE_ETCD_SERVERS="--etcd-servers=http://a:2379"
+```
+
+then
+```
+vi /etc/kubernetes/kubelet
+```
+edit (for machine b)
+```
+# kubernetes kubelet (minion) config
+
+# The address for the info server to serve on (set to 0.0.0.0 or "" for all inte
+rfaces)
+KUBELET_ADDRESS="--address=0.0.0.0"
+
+# The port for the info server to serve on
+KUBELET_PORT="--port=10250"
+
+# You may leave this blank to use the actual hostname
+KUBELET_HOSTNAME="--hostname-override=b"
+
+# location of the api-server
+KUBELET_API_SERVER="--api-servers=http://a:8080"
+
+# pod infrastructure container
+# KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redha
+t.com/rhel7/pod-infrastructure:latest"
+```
 ```
