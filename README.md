@@ -11,7 +11,7 @@ systemctl enable ntpd && systemctl start ntpd
 then add hosts to all machines.
 
 #### 05:20
-all 3 machines
+all 3 machines (hostname=a b c) a is master
 ```
 vi /etc/yum.repos.d/virt7-docker-common-release.repo
 ```
@@ -37,4 +37,18 @@ systemctl status firewalld
 master only
 ```
 yum install -y --enablerepo=virt7-docker-common-release kubernetes docker
+```
+
+### 02. Install and Configure Master Controller
+master
+```
+vi /etc/kubernetes/config
+```
+edit
+```
+KUBE_MASTER="--master=http://a:8080"
+```
+add this line
+```
+KUBE_ETCD_SERVERS="--etcd-servers=http://a:2379"
 ```
