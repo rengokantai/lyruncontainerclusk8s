@@ -54,10 +54,42 @@ KUBE_ETCD_SERVERS="--etcd-servers=http://a:2379"
 ```
 then
 ```
- vi /etc/etcd/etcd.conf
- ```
- edit
- ```
+vi /etc/etcd/etcd.conf
+```
+edit
+```
 ETCD_LISTEN_CLIENT_URLS="http://localhost:2379" -> ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
 ETCD_ADVERTISE_CLIENT_URLS="http://localhost:2379" -> ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
- ```
+```
+
+#### 06:19
+```
+vi /etc/kubernetes/apiserver
+```
+edit
+```
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0" -> 
+```
+to
+```
+# The address on the local server to listen to.
+KUBE_API_ADDRESS="--address=0.0.0.0"
+
+# The port on the local server to listen on.  (uncomment)
+KUBE_API_PORT="--port=8080"
+
+# Port minions listen on  (uncomment)
+KUBELET_PORT="--kubelet-port=10250"
+```
+and commment out this
+```
+# KUBE_ADMISSION_CONTROL
+```
+start on master
+```
+systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler && systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
+```
+check status, should return 4
+```
+systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)" | wc -l
+```
