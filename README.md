@@ -36,7 +36,7 @@ systemctl status firewalld
 #### 10:06
 master only
 ```
-yum install -y --enablerepo=virt7-docker-common-release kubernetes docker
+yum install -y --enablerepo=virt7-docker-common-release kubernetes docker && yum install -y etcd
 ```
 
 ### 02. Install and Configure Master Controller
@@ -52,3 +52,12 @@ add this line
 ```
 KUBE_ETCD_SERVERS="--etcd-servers=http://a:2379"
 ```
+then
+```
+ vi /etc/etcd/etcd.conf
+ ```
+ edit
+ ```
+ETCD_LISTEN_CLIENT_URLS="http://localhost:2379" -> ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+ETCD_ADVERTISE_CLIENT_URLS="http://localhost:2379" -> ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
+ ```
