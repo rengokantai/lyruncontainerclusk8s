@@ -136,3 +136,17 @@ machine b and c
 systemctl enable kube-proxy kubelet docker && systemctl start kube-proxy kubelet docker
 systemctl status kube-proxy kubelet docker | grep "(running)" | wc -l
 ```
+
+### 04. Kubectl - Exploring our Environment
+master
+```
+kubectl get nodes
+kubectl describe nodes
+```
+#### 05:19
+```
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.typs=="ExternalIP")].address}'
+```
+```
+kubectl get nodes -o jsonpath='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'|tr ';' "\n" | grep "Ready=True"
+```
