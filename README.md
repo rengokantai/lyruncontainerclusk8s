@@ -216,4 +216,6 @@ run pods from yaml(this command create a pod on any one machine)
 ```
 kubectl create -f nginx.yml
 ```
-
+```
+kubectl describe pod nginx
+```
