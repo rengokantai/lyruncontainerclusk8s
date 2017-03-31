@@ -176,3 +176,14 @@ exit
 docker restart name
 docker attach name
 ```
+
+### 02. Running Containers
+#### 14:44
+```
+gem list --local
+```
+### 03. The Dockerfile
+
+
+### 04. Managing Ports with Container Deployments
+
