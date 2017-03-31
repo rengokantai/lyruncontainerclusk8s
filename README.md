@@ -27,7 +27,7 @@ yum update -y
 ```
 (ubuntu: /etc/apt/sources.list.d)  
 
-####08:00 check status
+#### 08:00 check status
 ```
 systemctl status iptables
 systemctl status firewalld
@@ -266,7 +266,7 @@ vi nginx-deployment-prod.yml
 ```
 edit
 ```
-apiVersion: batch/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: nginx-deployment-prod
@@ -283,7 +283,16 @@ spec:
         ports:
         - containerPort: 80
 ```
+
+run
 ```
+kubectl create -f nginx-deployment-prod.yml
+```
+```
+kubectl get pods
+kubectl get deployments
+```
+
 
 ### 04. Multi-Pod (Container) Replication Controller
 
