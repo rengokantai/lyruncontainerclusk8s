@@ -293,7 +293,10 @@ kubectl get pods
 kubectl get deployments
 ```
 
-
+create a dev yaml file
+```
+cp nginx-deployment-prod.yml  nginx-deployment-dev.yml
+```
 ### 04. Multi-Pod (Container) Replication Controller
 
 ### 05. Create and Deploy Service Definitions
