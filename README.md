@@ -190,7 +190,7 @@ set user id=0
 
 ### 04. Managing Ports with Container Deployments
 
-## 4
+## 4. Pods, Tags and Services
 ### 01. Create and Deploy Pod Definitions
 master
 ```
@@ -232,7 +232,7 @@ kubectl port-forward nginx 8888:80
 ```
 
 
-###
+### 02. Tags, Labels and Selectors
 ```
 cp nginx.yml nginx-pod-label.yml
 vi nginx-pod-label.yml
@@ -258,3 +258,33 @@ get label
 ```
 kubectl get pods -l app=nginx
 ```
+
+### 03. Deployment State
+```
+cp nginx-pod-label.yml  nginx-deployment-prod.yml
+vi nginx-deployment-prod.yml
+```
+edit
+```
+apiVersion: batch/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-prod
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment-prod
+    spec:
+      containers:
+      - name: nginx-deployment-prod
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+```
+
+### 04. Multi-Pod (Container) Replication Controller
+
+### 05. Create and Deploy Service Definitions
