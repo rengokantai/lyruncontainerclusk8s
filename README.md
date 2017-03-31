@@ -150,3 +150,29 @@ kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.typs=="ExternalIP
 ```
 kubectl get nodes -o jsonpath='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'|tr ';' "\n" | grep "Ready=True"
 ```
+
+
+
+
+
+
+##3 Docker Fundamentals
+### 01. Pulling an Image
+```
+cd /var/lib/docker
+```
+menial1
+```
+docker pull ubuntu:xenial
+```
+```
+docker run -i -t ubuntu:xenial /bin/bash
+```
+-i interactive mode -t attach to tty
+
+#### 14:04
+```
+exit
+docker restart name
+docker attach name
+```
