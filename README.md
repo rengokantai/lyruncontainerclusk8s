@@ -183,7 +183,37 @@ docker attach name
 gem list --local
 ```
 ### 03. The Dockerfile
-
+```
+docker exec -u 0 -it sleepy_allen /bin/bash
+```
+set user id=0
 
 ### 04. Managing Ports with Container Deployments
+
+## 4
+### 01. Create and Deploy Pod Definitions
+master
+```
+vi nginx.yml
+```
+edit
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+```
+```
+kubectl get pods
+```
+run pods from yaml(this command create a pod on any one machine)
+```
+kubectl create -f nginx.yml
+```
 
