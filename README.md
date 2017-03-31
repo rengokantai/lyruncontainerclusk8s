@@ -297,6 +297,15 @@ create a dev yaml file
 ```
 cp nginx-deployment-prod.yml  nginx-deployment-dev.yml
 ```
-### 04. Multi-Pod (Container) Replication Controller
 
+
+#### 12:50
+```
+kubectl apply -f nginx-deployment-dev-update.yaml
+```
+### 04. Multi-Pod (Container) Replication Controller
+all minion machine
+```
+systemctl stop kubelet kube-proxy
+```
 ### 05. Create and Deploy Service Definitions
