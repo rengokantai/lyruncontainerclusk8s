@@ -219,3 +219,42 @@ kubectl create -f nginx.yml
 ```
 kubectl describe pod nginx
 ```
+```
+kubectl run busybox --image=busybox --restart=Never --tty -i --generator=run-pod/v1
+```
+```
+kubectl delete pod busybox
+```
+assign port
+```
+kubectl port-forward nginx :80   //assign random port
+kubectl port-forward nginx 8888:80
+```
+
+
+###
+```
+cp nginx.yml nginx-pod-label.yml
+vi nginx-pod-label.yml
+```
+edit
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+```
+
+get label
+```
+kubectl get pods -l app=nginx
+```
