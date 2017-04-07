@@ -304,6 +304,27 @@ cp nginx-deployment-prod.yml  nginx-deployment-dev.yml
 kubectl apply -f nginx-deployment-dev-update.yaml
 ```
 ### 04. Multi-Pod (Container) Replication Controller
+create file
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-www
+  spec:
+    replicas: 3
+    selector:
+      app: nginx
+    template:
+      metadata:
+        name: naginx
+        labels:
+          app: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: nginx
+            ports:
+            - containerPort: 80
 all minion machine
 ```
 systemctl stop kubelet kube-proxy
