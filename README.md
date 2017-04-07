@@ -306,6 +306,9 @@ kubectl apply -f nginx-deployment-dev-update.yaml
 ### 04. Multi-Pod (Container) Replication Controller
 create file
 ```
+nginx-multi-label.yml
+```
+```
 apiVersion: v1
 kind: ReplicationController
 metadata:
