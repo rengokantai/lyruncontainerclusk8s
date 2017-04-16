@@ -313,23 +313,29 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   name: nginx-www
-  spec:
-    replicas: 3
-    selector:
-      app: nginx
-    template:
-      metadata:
-        name: naginx
-        labels:
-          app: nginx
-        spec:
-          containers:
-          - name: nginx
-            image: nginx
-            ports:
-            - containerPort: 80
-all minion machine
+spec:
+  replicas: 2
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: naginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+```
+all minion machinels
 ```
 systemctl stop kubelet kube-proxy
 ```
 ### 05. Create and Deploy Service Definitions
+```
+kubectl get replicationcontrollers
+kubectl get pods
+kubectl get nodes
+```
