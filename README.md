@@ -376,3 +376,14 @@ spec:
   selector:
     app: nginx
 ```
+list services
+```
+kubectl get services
+```
+#### 11:04
+```
+kubectl run busybox --generator=run-pod/v1 --image=busybox --restart=Never --tty -i
+```
+```
+kubectl delete service nginx-service
+```
