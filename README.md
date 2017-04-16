@@ -340,6 +340,12 @@ kubectl get services
 ```
 kubectl delete pods --all
 ```
+But the pods will go back after several seconds.  
+in this scenario we need to delete controllers
+```
+kubectl get replicationcontrollers
+kubectl delete reaplicationcontroller nginx-www
+```
 all minion machinels
 ```
 systemctl stop kubelet kube-proxy
@@ -349,4 +355,24 @@ systemctl stop kubelet kube-proxy
 kubectl get replicationcontrollers
 kubectl get pods
 kubectl get nodes
+```
+
+#### 06:04
+create a service
+```
+vi nginx-service.yml
+```
+then edit
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  ports:
+  - port: 8000
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: nginx
 ```
