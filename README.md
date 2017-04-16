@@ -329,6 +329,17 @@ spec:
         ports:
         - containerPort: 80
 ```
+```
+kubectl describe pods
+```
+#### 09:30
+```
+kubectl get services
+```
+[delete all pods](https://coderwall.com/p/xat1gw/delete-all-pods-in-kubernetes)
+```
+kubectl delete pods --all
+```
 all minion machinels
 ```
 systemctl stop kubelet kube-proxy
