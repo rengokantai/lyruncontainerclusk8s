@@ -387,3 +387,11 @@ kubectl run busybox --generator=run-pod/v1 --image=busybox --restart=Never --tty
 ```
 kubectl delete service nginx-service
 ```
+
+## 05. Logs, Scaling and Recovery
+### 01. Creating Temporary Pods at the Command line
+### 02. Interacting with Pod Containers
+### 03. Logs
+### 04. Autoscaling and Scaling our Pods
+### 05. Failure and Recovery
+
