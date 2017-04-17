@@ -471,5 +471,23 @@ spec:
         ports:
         - containerPort: 80
 ```
+```
+kubectl run myauto --image=latest123/apache --port=80 --labels=app=myauto
+```
+#### 06:20
+```
+kubectl autoscale deployment myauto --min=2 --max=10 --cpu-percent=80
+kubectl get deployments
+```
+#### 10:40
+```
+kubectl scale --current-replicas=2 --replicas=4 deployment/myauto
+kubectl get deployments
+```
+It seems like
+```
+--current-replicas=2 
+```
+is optional.
 ### 05. Failure and Recovery
 
