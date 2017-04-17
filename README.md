@@ -490,4 +490,12 @@ It seems like
 ```
 is optional.
 ### 05. Failure and Recovery
+```
+kubectl run myrecovery --image=latest123/apache --port=80 --replicas=2 --labels=app=myrecovery
+```
 
+#### 05:08
+minion 2
+```
+systemctl stop docker kubelet kube-proxy
+```
