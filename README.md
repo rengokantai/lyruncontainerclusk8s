@@ -390,8 +390,86 @@ kubectl delete service nginx-service
 
 ## 05. Logs, Scaling and Recovery
 ### 01. Creating Temporary Pods at the Command line
+review nginx.yml
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.7.9
+    ports:
+    - containerPort: 80
+```
+
+```
+kubectl run mysample --image=latest123/apache
+```
+#### 04:25
+```
+kubectl get deployments
+```
+##### 06:15
+```
+kubectl delete deployment mysample
+```
+delete all
+```
+kubectl delete deployments --all
+```
 ### 02. Interacting with Pod Containers
+```
+vi myapache.yml
+```
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapache
+spec:
+  containers:
+  - name: myapache
+    image: latest123/apache
+    ports:
+    - containerPort: 80
+```
+```
+kubectl create -f myapache.yml
+```
+#### 04:00
+```
+kubectl exec myapache date
+```
+in lynx,
+```
+xterm
+```
+to enter terminal page
 ### 03. Logs
 ### 04. Autoscaling and Scaling our Pods
+review nginx-multi-label.yml
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-www
+spec:
+  replicas: 2
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: naginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+```
 ### 05. Failure and Recovery
 
